@@ -31,7 +31,7 @@ Rating.defaultProps = {
   color: '#f8e825',
 };
 Rating.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   color: PropTypes.string,
 };

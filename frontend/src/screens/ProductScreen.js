@@ -16,7 +16,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 const ProductScreen = ({ history, match }) => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   //HELPERS
   let id = match.params.id;
 
@@ -54,7 +54,7 @@ const ProductScreen = ({ history, match }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Rating
-                  value='{product.rating}'
+                  value={product.rating || 0}
                   text={`${product.numReviews} Reviews`}
                 />
               </ListGroup.Item>
