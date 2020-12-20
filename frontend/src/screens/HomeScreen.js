@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product';
 import { listProducts } from '../actions/productActions';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
@@ -16,9 +19,9 @@ const HomeScreen = () => {
 
   function showProducts() {
     if (loading) {
-      return <h2>Loading...</h2>;
+      return <Loader />;
     } else if (error) {
-      return <h3>{error}</h3>;
+      return <Message variant='danger'>{error}</Message>;
     } else {
       return (
         <Row>
