@@ -6,6 +6,8 @@ import {
   updateUserProfile,
   getUsers,
   deleteUser,
+  getUserById,
+  updateUser,
 } from '../controllers/userController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
 const router = express.Router();
@@ -28,9 +30,13 @@ router
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
 
-// @desc    Delete user
-// @route   DELETE /api/users/:id
-// @access  Private/Admin
-router.route('/:id').delete(protect, admin, deleteUser);
+// @desc    Delete user by ID | Get user by ID | Update user by ID
+// @route   DELETE /api/users/:id | GET /api/users/:id | PUT /api/user/:id
+// @access  Private/Admin | Private/Admin | Private/Admin
+router
+  .route('/:id')
+  .delete(protect, admin, deleteUser)
+  .get(protect, admin, getUserById)
+  .put(protect, admin, updateUser);
 
 export default router;
