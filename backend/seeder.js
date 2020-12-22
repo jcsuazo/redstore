@@ -33,6 +33,19 @@ const importData = async () => {
     process.exit(1);
   }
 };
+const importUsers = async () => {
+  try {
+    await User.deleteMany();
+
+    await User.insertMany(users);
+
+    console.log('Users Imported!'.green.inverse);
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`.red.inverse);
+    process.exit(1);
+  }
+};
 const detroyData = async () => {
   try {
     await Order.deleteMany();
@@ -49,6 +62,8 @@ const detroyData = async () => {
 
 if (process.argv[2] === '-d') {
   detroyData();
+} else if (process.argv[2] === '-u') {
+  importUsers();
 } else {
   importData();
 }
