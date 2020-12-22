@@ -44,6 +44,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     });
   }
 };
+
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -73,6 +74,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     });
   }
 };
+
 export const payOrder = (orderId, paymentResult) => async (
   dispatch,
   getState,
@@ -110,6 +112,7 @@ export const payOrder = (orderId, paymentResult) => async (
     });
   }
 };
+
 export const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -139,6 +142,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
     });
   }
 };
+
 export const resetSuccess = () => async (dispatch, getState) => {
   dispatch({
     type: ORDER_SUCCESS_RESET,
