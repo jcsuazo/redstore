@@ -22,6 +22,19 @@ const Header = () => {
       <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
     </NavDropdown>
   );
+  const adminMenuHTMl = (
+    <NavDropdown title='Admin' id='adminmenu'>
+      <LinkContainer to='/admin/userlist'>
+        <NavDropdown.Item>Users</NavDropdown.Item>
+      </LinkContainer>
+      <LinkContainer to='/admin/productlist'>
+        <NavDropdown.Item>Products</NavDropdown.Item>
+      </LinkContainer>
+      <LinkContainer to='/admin/orderlist'>
+        <NavDropdown.Item>Orders</NavDropdown.Item>
+      </LinkContainer>
+    </NavDropdown>
+  );
 
   const guestHTML = (
     <LinkContainer to='/login'>
@@ -47,6 +60,7 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? loggedHTMl : guestHTML}
+              {userInfo && userInfo.isAdmin && adminMenuHTMl}
             </Nav>
           </Navbar.Collapse>
         </Container>
