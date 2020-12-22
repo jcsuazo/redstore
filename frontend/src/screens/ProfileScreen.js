@@ -33,9 +33,9 @@ const ProfileScreen = ({ location, history }) => {
     if (!userInfo) {
       history.push('/login');
     } else {
+      dispatch(listMyOrders());
       if (!user.name) {
         dispatch(getUserDetails('profile'));
-        dispatch(listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -122,7 +122,7 @@ const ProfileScreen = ({ location, history }) => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {orders.map((order, i) => (
                 <tr key={order._id}>
                   <td className='text-center align-middle'>{order._id}</td>
                   <td className='text-center align-middle'>
@@ -153,7 +153,10 @@ const ProfileScreen = ({ location, history }) => {
                   </td>
                   <td className='text-center'>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button className='btn-sm' variant='light'>
+                      <Button
+                        className='btn-sm'
+                        variant={i % 2 === 0 ? 'light' : 'dark'}
+                      >
                         Details
                       </Button>
                     </LinkContainer>

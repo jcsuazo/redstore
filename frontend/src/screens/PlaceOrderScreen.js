@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
-import { createOrder } from '../actions/orderActions';
+import { createOrder, resetSuccess } from '../actions/orderActions';
+import { resetCard } from '../actions/cartActions';
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ const PlaceOrderScreen = ({ history }) => {
   useEffect(() => {
     if (success) {
       history.push(`/order/${order._id}`);
+      dispatch(resetCard());
+      dispatch(resetSuccess());
     }
     // eslint-disable-next-line
   }, [history, success]);
