@@ -99,7 +99,7 @@ const createProductReview = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('The rating must be between 0 and 5');
   }
-  if (rating === undefined || !comment) {
+  if (rating === undefined || rating === '' || !comment) {
     res.status(400);
     throw new Error('Please provide a rating and a comment');
   }
