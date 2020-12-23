@@ -4,14 +4,15 @@ import {
   getOrderById,
   updateOrderToPaid,
   getMyOrders,
+  getOrders,
 } from '../controllers/orderController.js';
-import { protect } from '../middleware/authMiddleware.js';
+import { protect, admin } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
-// @desc    Create new order
-// @route   POST /api/orders
-// @access  private
-router.route('/').post(protect, addOrderItems);
+// @desc    Create new order | Get all orders
+// @route   POST /api/orders | GET /api/orders
+// @access  private | Private Admin
+router.route('/').post(protect, addOrderItems).get(protect, admin, getOrders);
 
 // @desc    Get logged in user orders
 // @route   GET /api/orders/myorders
