@@ -38,7 +38,7 @@ app.use('/api/config/paypal', (req, res) =>
 
 //Statics Folders
 const __dirname = path.resolve();
-app.use('/uploads', express.static(__dirname, '/uploads'));
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.use(notFound);
 
