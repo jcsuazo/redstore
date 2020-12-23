@@ -6,6 +6,7 @@ import {
   deleteProduct,
   createProduct,
   updateProduct,
+  createProductReview,
 } from '../controllers/productController.js';
 const router = express.Router();
 
@@ -23,4 +24,8 @@ router
   .delete(protect, admin, deleteProduct)
   .put(protect, admin, updateProduct);
 
+// @desc    Create new review
+// @route   POST /api/products/:id/reviews
+// @access  Private
+router.route('/:id/reviews').post(protect, createProductReview);
 export default router;
