@@ -7,6 +7,7 @@ import {
   createProduct,
   updateProduct,
   createProductReview,
+  getTopProducts,
 } from '../controllers/productController.js';
 const router = express.Router();
 
@@ -14,6 +15,11 @@ const router = express.Router();
 // @route   GET /api/products | POST /api/products
 // @access  Public | Private/Admin
 router.route('/').get(getProducts).post(protect, admin, createProduct);
+
+// @desc    Get top rated products
+// @route   POST /api/products/top
+// @access  Public
+router.route('/top').get(getTopProducts);
 
 // @desc    Fetch single product | Delete a product | Upate a product
 // @route   GET /api/products/:id | DELETE /api/products/:id | PUT /api/products/:id
@@ -28,4 +34,5 @@ router
 // @route   POST /api/products/:id/reviews
 // @access  Private
 router.route('/:id/reviews').post(protect, createProductReview);
+
 export default router;
