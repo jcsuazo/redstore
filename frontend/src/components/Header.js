@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import SearchBox from './SearchBox';
 import { logout } from '../actions/userActions';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const dispatch = useDispatch();
   const { userInfo } = userLogin;
-
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const toggleClass = () => {
+    console.log('enter');
+    console.log(toggleMenu);
+    setToggleMenu(!toggleMenu);
+  };
   //HANDLERS
   const logoutHandler = () => {
     dispatch(logout());
@@ -46,7 +52,7 @@ const Header = () => {
     </LinkContainer>
   );
 
-  return (
+  const oldHtml = (
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
@@ -70,6 +76,61 @@ const Header = () => {
       </Navbar>
     </header>
   );
+  const newHeader = (
+    <>
+      <div className='redHeader'>
+        <div className='redContainer'>
+          <div className='redNavbar'>
+            <div className='logo'>
+              <Link to='/'>
+                <img src='images/logo.png' alt='logo' width='125px' />
+              </Link>
+            </div>
+            <nav className='redNav'>
+              <ul
+                id='MenuItems'
+                style={
+                  toggleMenu ? { maxHeight: '220px' } : { maxHeight: '0px' }
+                }
+              >
+                <li>
+                  <Link to='/'>Home</Link>
+                </li>
+                <li>
+                  <a href='/'>Products</a>
+                </li>
+                <li>
+                  <a href='/'>About</a>
+                </li>
+                <li>
+                  <a href='/'>Contact</a>
+                </li>
+                <li>
+                  <a href='/'>Account</a>
+                </li>
+              </ul>
+            </nav>
+            <Link to='/cart'>
+              <img
+                src='images/cart.png'
+                width='30px'
+                height='30px'
+                alt='cart'
+              />
+            </Link>
+            <img
+              className='menu-icon'
+              onClick={toggleClass}
+              src='images/menu.png'
+              alt='menu'
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  return newHeader;
 };
 
 export default Header;
