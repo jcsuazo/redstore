@@ -41,6 +41,10 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
+        <Link to='/' className='btn btn-dark btn-sm'>
+          <i className='fas fa-angle-double-left mr-2 h5 mb-1 align-middle text-white'></i>
+          Continue Shopping
+        </Link>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
