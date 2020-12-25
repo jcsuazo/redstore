@@ -83,7 +83,7 @@ const Header = () => {
           <div className='redNavbar'>
             <div className='logo'>
               <Link to='/'>
-                <img src='images/logo.png' alt='logo' width='125px' />
+                <img src='/images/logo.png' alt='logo' width='125px' />
               </Link>
             </div>
             <nav className='redNav'>
@@ -97,7 +97,7 @@ const Header = () => {
                   <Link to='/'>Home</Link>
                 </li>
                 <li>
-                  <a href='/'>Products</a>
+                  <Link to='/products'>Products</Link>
                 </li>
                 <li>
                   <a href='/'>About</a>
@@ -112,7 +112,7 @@ const Header = () => {
             </nav>
             <Link to='/cart'>
               <img
-                src='images/cart.png'
+                src='/images/cart.png'
                 width='30px'
                 height='30px'
                 alt='cart'
@@ -121,7 +121,7 @@ const Header = () => {
             <img
               className='menu-icon'
               onClick={toggleClass}
-              src='images/menu.png'
+              src='/images/menu.png'
               alt='menu'
             />
           </div>

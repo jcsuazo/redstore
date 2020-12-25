@@ -1,15 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 const Footer = () => {
-  const oldHTML = (
-    <footer>
-      <Container>
-        <Row>
-          <Col className='text-center py-3'>Copyright &copy;ProShop</Col>
-        </Row>
-      </Container>
-    </footer>
-  );
   const footer = (
     <div className='footer'>
       <div className='redContainer'>
@@ -18,12 +8,12 @@ const Footer = () => {
             <h3>Download Our App</h3>
             <p>Download App for Android and IOS mobile phone.</p>
             <div className='app-logo'>
-              <img src='images/play-store.png' alt='play-store' />
-              <img src='images/app-store.png' alt='app-store' />
+              <img src='/images/play-store.png' alt='play-store' />
+              <img src='/images/app-store.png' alt='app-store' />
             </div>
           </div>
           <div className='footer-col-2'>
-            <img src='images/logo-white.png' alt='logo' />
+            <img src='/images/logo-white.png' alt='logo' />
             <p>
               Out Purpose is to sustainable make the pleasure and benefits of
               sports accessible to the many.

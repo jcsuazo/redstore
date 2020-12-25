@@ -49,7 +49,7 @@ const HomeScreen = ({ match }) => {
           </a>
         </div>
         <div className='red-col-2'>
-          <img src='images/image1.png' alt='image1' />
+          <img src='/images/image1.png' alt='image1' />
         </div>
       </div>
     </div>
@@ -59,13 +59,13 @@ const HomeScreen = ({ match }) => {
       <div className='small-container'>
         <div className='redRow'>
           <div className='red-col-3'>
-            <img src='images/category-1.jpg' alt='category1' />
+            <img src='/images/category-1.jpg' alt='category1' />
           </div>
           <div className='red-col-3'>
-            <img src='images/category-2.jpg' alt='category2' />
+            <img src='/images/category-2.jpg' alt='category2' />
           </div>
           <div className='red-col-3'>
-            <img src='images/category-3.jpg' alt='category3' />
+            <img src='/images/category-3.jpg' alt='category3' />
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@ const HomeScreen = ({ match }) => {
           <div className='red-col-2'>
             <img
               className='offer-img'
-              src='images/exclusive.png'
+              src='/images/exclusive.png'
               alt='offer-img'
             />
           </div>
@@ -161,7 +161,7 @@ const HomeScreen = ({ match }) => {
               <i className='fa fa-star'></i>
               <i className='fa fa-star-0'></i>
             </div>
-            <img src='images/user-1.png' alt='profile_img' />
+            <img src='/images/user-1.png' alt='profile_img' />
             <h3>Sean Parker</h3>
           </div>
           <div className='red-col-3'>
@@ -179,7 +179,7 @@ const HomeScreen = ({ match }) => {
               <i className='fa fa-star'></i>
               <i className='fa fa-star-0'></i>
             </div>
-            <img src='images/user-2.png' alt='profile_img' />
+            <img src='/images/user-2.png' alt='profile_img' />
             <h3>Mike Smith</h3>
           </div>
           <div className='red-col-3'>
@@ -197,7 +197,7 @@ const HomeScreen = ({ match }) => {
               <i className='fa fa-star'></i>
               <i className='fa fa-star-0'></i>
             </div>
-            <img src='images/user-3.png' alt='profile_img' />
+            <img src='/images/user-3.png' alt='profile_img' />
             <h3>Mabel Joe</h3>
           </div>
         </div>
@@ -209,19 +209,19 @@ const HomeScreen = ({ match }) => {
       <div className='small-container'>
         <div className='redRow'>
           <div className='red-col-5'>
-            <img src='images/logo-godrej.png' alt='logo-review' />
+            <img src='/images/logo-godrej.png' alt='logo-review' />
           </div>
           <div className='red-col-5'>
-            <img src='images/logo-oppo.png' alt='logo-review' />
+            <img src='/images/logo-oppo.png' alt='logo-review' />
           </div>
           <div className='red-col-5'>
-            <img src='images/logo-coca-cola.png' alt='logo-review' />
+            <img src='/images/logo-coca-cola.png' alt='logo-review' />
           </div>
           <div className='red-col-5'>
-            <img src='images/logo-paypal.png' alt='logo-review' />
+            <img src='/images/logo-paypal.png' alt='logo-review' />
           </div>
           <div className='red-col-5'>
-            <img src='images/logo-philips.png' alt='logo-review' />
+            <img src='/images/logo-philips.png' alt='logo-review' />
           </div>
         </div>
       </div>

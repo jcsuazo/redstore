@@ -279,6 +279,52 @@ ul {
   text-align: center;
 }
 
+/* -------------------All products page------------------- */
+.redRow2 {
+  justify-content: space-between;
+  margin: 100px auto 50px;
+}
+.redSelect {
+  border: 1px solid #ff523b;
+  padding: 5px;
+}
+.redSelect:focus {
+  outline: none;
+}
+.fixVisualBug {
+  margin-right: -10px;
+  margin-left: -3px;
+}
+/* -------------------Pagination------------------- */
+.page-btn {
+  margin: 0 auto 80px;
+}
+.page-btn .redSpan {
+  display: inline-block;
+  border: 1px solid #ff523b;
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.page-btn .redSpan:hover {
+  background: #ff523b;
+  color: #fff;
+}
+.redActive {
+  background: #ff523b;
+  color: #fff;
+}
+.redRotate {
+  transform: rotate(180deg);
+}
+.centerLoader {
+  height: 50vh;
+  display: flex;
+}
 /* -------------------Responsive------------------- */
 
 .menu-icon {
