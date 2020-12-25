@@ -1,7 +1,7 @@
 const products = [
   {
     name: "Hanes Men's Short Sleeve Beefy-t",
-    image: 'images/product-1.jpg',
+    image: '/images/product-1.jpg',
     description:
       'Heavyweight and durable, yet super-soft ring-spun cotton, Full cut provides roomier fit, Non-chafe fabric taping reinforces neck and shoulders',
     brand: "Hanes Men's",
@@ -13,8 +13,8 @@ const products = [
     featured: true,
   },
   {
-    name: "Under Armour Men's Charged Assert 8 Running Shoe",
-    image: 'images/product-2.jpg',
+    name: "Under Armour Men's Charged Running Shoe",
+    image: '/images/product-2.jpg',
     description:
       '84% Polyester, 16% Elastane, Imported, Synthetic sole, Shaft measures approximately low-top from arch, NEUTRAL: For runners who need a balance of flexibility & cushioning',
     brand: "Armour Men's",
@@ -26,13 +26,13 @@ const products = [
     featured: true,
   },
   {
-    name: "Southpole Men's Active Basic Jogger Fleece Pants",
-    image: 'images/product-3.jpg',
+    name: "Southpole Men's Active Basic Pants",
+    image: '/images/product-3.jpg',
     description:
       '100% Polyester, Imported, Elastic closure, Machine Wash, SP active is an active sports line of Southpole, Adjustable waist cord for comfort',
     brand: "Southpole Men's",
     category: 'Clothing',
-    price: 37.97,
+    price: 27.97,
     countInStock: 10,
     rating: 4,
     numReviews: 4,
@@ -40,7 +40,7 @@ const products = [
   },
   {
     name: 'MAI Post Shoulder Surgery Shirts',
-    image: 'images/product-4.jpg',
+    image: '/images/product-4.jpg',
     description:
       'STYLISH DESIGN, COMFORTABLE PATIENT CLOTHING. Fashionable and dignified - our goal is for you to feel comfortable in your own clothes. Ideal for post-surgery, wearing a sling for a cast, chemotherapy, physical therapy, kidney surgery recovery, long-term blood draws and antibiotics',
     brand: 'MAI Post',
@@ -53,7 +53,7 @@ const products = [
   },
   {
     name: "New Balance Women's FuelCore Nergize V1 Sneaker",
-    image: 'images/product-5.jpg',
+    image: '/images/product-5.jpg',
     description:
       'Midsole Cushioning: These New Balance sneakers feature a REVlite midsole that delivers incredibly lightweight cushioning and provides a responsive ride for comfortable all-day wear',
     brand: 'Nergize',
@@ -65,7 +65,7 @@ const products = [
   },
   {
     name: "PUMA Men's Archive Life T-Shirt",
-    image: 'images/product-6.jpg',
+    image: '/images/product-6.jpg',
     description:
       'Short-sleeve t-shirt featuring single-color logo at front and mini logo at sleeve',
     brand: 'PUMA',
@@ -77,7 +77,7 @@ const products = [
   },
   {
     name: "Saucony Men's Multi-pack Mesh",
-    image: 'images/product-7.jpg',
+    image: '/images/product-7.jpg',
     description:
       "Run Dry Moisture Management Provides Superior Moisture Transport with our Ultra Wicking Fibers. So, Whether you're in the Gym or on the Road, your Feet Stay Fresh.",
     brand: 'hrx',
@@ -89,7 +89,7 @@ const products = [
   },
   {
     name: 'Mens Watches Ultra-Thin',
-    image: 'images/product-8.jpg',
+    image: '/images/product-8.jpg',
     description:
       'Mens Watches Ultra-Thin Minimalist Waterproof-Fashion Wrist Watch for Men Unisex Dress with Leather Band',
     brand: 'fossil',
@@ -101,7 +101,7 @@ const products = [
   },
   {
     name: "Michael Kors Men's watch",
-    image: 'images/product-9.jpg',
+    image: '/images/product-9.jpg',
     description: "Michael Kors Men's Slim Runway Stainless Steel Quartz Watch",
     brand: 'michael kors',
     category: 'Clothing',
@@ -112,7 +112,7 @@ const products = [
   },
   {
     name: "YHOON Women's Walking Shoes",
-    image: 'images/product-10.jpg',
+    image: '/images/product-10.jpg',
     description:
       "YHOON Women's Walking Shoes - Slip on Sneakers Lightweight Tennis Shoes Sock Sneakers",
     brand: 'YHOON',
@@ -124,7 +124,7 @@ const products = [
   },
   {
     name: "Armour Men's shoes",
-    image: 'images/product-11.jpg',
+    image: '/images/product-11.jpg',
     description: "Under Armour Men's Charged Pursuit 2 Running Shoe",
     brand: 'Armour',
     category: 'Clothing',
@@ -135,7 +135,7 @@ const products = [
   },
   {
     name: "adidas Men's Tiro 19 Training Pants",
-    image: 'images/product-12.jpg',
+    image: '/images/product-12.jpg',
     description:
       'adidas Soccer apparel is designed to keep you comfortable for the entire 90 minutes on the field and beyond',
     brand: 'adidas',

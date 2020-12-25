@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product';
-import { listProducts } from '../actions/productActions';
+import { listProducts, listFeaturedProducts } from '../actions/productActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
+import Rating from '../components/Rating';
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
@@ -20,8 +21,12 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
+  const productFeatured = useSelector((state) => state.productFeatured);
+  const { products: productsFeatured } = productFeatured;
+
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
+    dispatch(listFeaturedProducts());
   }, [dispatch, keyword, pageNumber]);
 
   function showProducts() {
@@ -104,6 +109,29 @@ const HomeScreen = ({ match }) => {
     </div>
   );
   const featuredProducts = (
+    <div className='featuredProducts red-gb-white'>
+      <div className='small-container red-gb-white'>
+        <h2 className='red-title'>Featured Products</h2>
+        <div className='redRow'>
+          {productsFeatured.map((featured) => (
+            <div className='red-col-4'>
+              <Link to={`/product/${featured._id}`}>
+                <img src={featured.image} alt={featured.name} />
+                <h4>{featured.name}</h4>
+                <Rating
+                  color='#ff523b'
+                  value={featured.rating || 0}
+                  text={``}
+                />
+                <p>${featured.price}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+  const featuredProducts2 = (
     <div className='featuredProducts red-gb-white'>
       <div className='small-container red-gb-white'>
         <h2 className='red-title'>Featured Products</h2>
