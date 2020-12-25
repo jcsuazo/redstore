@@ -129,6 +129,7 @@ p {
   color: #ff523b;
 }
 .red-col-4 h4 {
+  min-height: 29px;
   font-size: 0.8rem;
   letter-spacing: 2px;
   margin-top: 0.8rem;

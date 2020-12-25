@@ -24,6 +24,9 @@ import {
   PRODUCT_FEATURED_REQUEST,
   PRODUCT_FEATURED_SUCCESS,
   PRODUCT_FEATURED_FAIL,
+  PRODUCT_LATEST_REQUEST,
+  PRODUCT_LATEST_SUCCESS,
+  PRODUCT_LATEST_FAIL,
 } from '../constants/productConstants';
 
 export const listProducts = (keyword = '', pageNumber = '') => async (
@@ -224,6 +227,24 @@ export const listFeaturedProducts = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_FEATURED_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listLatestProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_LATEST_REQUEST });
+
+    const { data } = await axios.get(`/api/products/latest`);
+
+    dispatch({ type: PRODUCT_LATEST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_LATEST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

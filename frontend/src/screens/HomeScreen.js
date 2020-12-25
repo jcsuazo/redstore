@@ -3,13 +3,11 @@ import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import Product from '../components/Product';
-import { listProducts, listFeaturedProducts } from '../actions/productActions';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
-import Paginate from '../components/Paginate';
-import ProductCarousel from '../components/ProductCarousel';
+import {
+  listProducts,
+  listFeaturedProducts,
+  listLatestProducts,
+} from '../actions/productActions';
 import Meta from '../components/Meta';
 import Rating from '../components/Rating';
 
@@ -17,56 +15,21 @@ const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
-
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
-
   const productFeatured = useSelector((state) => state.productFeatured);
   const { products: productsFeatured } = productFeatured;
+
+  const productLatest = useSelector((state) => state.productLatest);
+  const { products: productsLatest } = productLatest;
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
     dispatch(listFeaturedProducts());
+    dispatch(listLatestProducts());
   }, [dispatch, keyword, pageNumber]);
 
-  function showProducts() {
-    if (loading) {
-      return <Loader />;
-    } else if (error) {
-      return <Message variant='danger'>{error}</Message>;
-    } else {
-      return (
-        <>
-          <Row>
-            {products.map((product) => (
-              <Col sm={12} md={6} lg={4} key={product._id}>
-                <Product product={product} />
-              </Col>
-            ))}
-          </Row>
-          <Paginate
-            pages={pages}
-            page={page}
-            keyword={keyword ? keyword : ''}
-          />
-        </>
-      );
-    }
+  function truncate(str) {
+    return str.length > 40 ? str.substring(0, 40) + '...' : str;
   }
-  const oldHTML = (
-    <>
-      <Meta />
-      {!keyword ? (
-        <ProductCarousel />
-      ) : (
-        <Link to='/' className='btn btn-light'>
-          Go back
-        </Link>
-      )}
-      <h1>Latest Products</h1>
-      {showProducts()}
-    </>
-  );
   const heroHtml = (
     <div className='redContainer'>
       <div className='redRow'>
@@ -114,10 +77,10 @@ const HomeScreen = ({ match }) => {
         <h2 className='red-title'>Featured Products</h2>
         <div className='redRow'>
           {productsFeatured.map((featured) => (
-            <div className='red-col-4'>
+            <div className='red-col-4' key={featured._id}>
               <Link to={`/product/${featured._id}`}>
                 <img src={featured.image} alt={featured.name} />
-                <h4>{featured.name}</h4>
+                <h4>{truncate(featured.name)}</h4>
                 <Rating
                   color='#ff523b'
                   value={featured.rating || 0}
@@ -131,164 +94,21 @@ const HomeScreen = ({ match }) => {
       </div>
     </div>
   );
-  const featuredProducts2 = (
-    <div className='featuredProducts red-gb-white'>
-      <div className='small-container red-gb-white'>
-        <h2 className='red-title'>Featured Products</h2>
-        <div className='redRow'>
-          <div className='red-col-4'>
-            <img src='images/product-1.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-2.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-3.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-4.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
   const latestProducts = (
     <div className='featuredProducts red-gb-white'>
       <div className='small-container red-gb-white'>
         <h2 className='red-title'>Leatest Products</h2>
         <div className='redRow'>
-          <div className='red-col-4'>
-            <img src='images/product-5.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
+          {productsLatest.map((latest) => (
+            <div className='red-col-4' key={latest._id}>
+              <Link to={`/product/${latest._id}`}>
+                <img src={latest.image} alt={latest.name} />
+                <h4>{truncate(latest.name)}</h4>
+                <Rating color='#ff523b' value={latest.rating || 0} text={``} />
+                <p>${latest.price}</p>
+              </Link>
             </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-6.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-7.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-8.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-9.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-10.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-11.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
-          <div className='red-col-4'>
-            <img src='images/product-12.jpg' alt='product3' />
-            <h4>Red Printed T-Shirt</h4>
-            <div className='rating'>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star'></i>
-              <i className='fa fa-star-0'></i>
-            </div>
-            <p>$50.00</p>
-          </div>
+          ))}
         </div>
       </div>
     </div>
