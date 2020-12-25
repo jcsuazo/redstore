@@ -157,6 +157,17 @@ const getTopProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
+// @desc    Get lastest 4 feature products
+// @route   POST /api/products/featured
+// @access  Public
+const getFeaturedProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({ featured: true })
+    .sort({ rating: -1 })
+    .limit(4);
+
+  res.json(products);
+});
+
 export {
   getProducts,
   getProductById,
@@ -165,4 +176,5 @@ export {
   updateProduct,
   createProductReview,
   getTopProducts,
+  getFeaturedProducts,
 };
