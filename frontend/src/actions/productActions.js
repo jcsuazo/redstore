@@ -29,17 +29,19 @@ import {
   PRODUCT_LATEST_FAIL,
 } from '../constants/productConstants';
 
-export const listProducts = (keyword = '', pageNumber = '') => async (
-  dispatch,
-) => {
+export const listProducts = (
+  keyword = '',
+  pageNumber = 1,
+  sort = 'priceDown',
+) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-
+    // console.log('callling');
     const { data } = await axios.get(
-      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`,
+      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}&sort=${sort}`,
     );
-
-    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+    const myData = { ...data, currentPage: pageNumber, sort };
+    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: myData });
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,

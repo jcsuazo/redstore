@@ -5,8 +5,31 @@ import Product from '../models/productModel.js';
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 8;
+  const pageSize = 2;
   const page = Number(req.query.pageNumber) || 1;
+  let sort;
+  if (req.query.sort) {
+    switch (req.query.sort) {
+      case 'priceUp':
+        sort = { price: 1 };
+        break;
+      case 'priceDown':
+        sort = { price: -1 };
+        break;
+      case 'latest':
+        sort = { createdAt: 1 };
+        break;
+      case 'oldest':
+        sort = { createdAt: -1 };
+        break;
+      case 'rating':
+        sort = { rating: -1 };
+        break;
+      default:
+        sort = { price: -1 };
+        break;
+    }
+  }
   const keyword = req.query.keyword
     ? {
         name: {
@@ -18,7 +41,8 @@ const getProducts = asyncHandler(async (req, res) => {
   const count = await Product.countDocuments({ ...keyword });
   const products = await Product.find({ ...keyword })
     .limit(pageSize)
-    .skip(pageSize * (page - 1));
+    .skip(pageSize * (page - 1))
+    .sort({ ...sort });
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 

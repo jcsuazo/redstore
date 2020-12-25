@@ -9,30 +9,34 @@ import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 
 const ProductsScreen = ({ match }) => {
-  const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page: myPage, pages } = productList;
-
-  useEffect(() => {
-    dispatch(listProducts('', pageNumber));
-  }, [dispatch, pageNumber]);
+  const { loading, products, pages, currentPage, sort } = productList;
 
   function truncate(str) {
     return str.length > 40 ? str.substring(0, 40) + '...' : str;
   }
+  function sortHandler(e) {
+    dispatch(listProducts('', currentPage, e.target.value));
+  }
+  function changePage(nextPage) {
+    dispatch(listProducts('', nextPage, sort));
+  }
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
+
   const productsHeading = (
     <div className='small-container red-gb-white'>
       <div className='redRow redRow2'>
         <h2>All Products</h2>
-        <select name='' id='' className='redSelect'>
-          <option value=''>Default Sorting</option>
-          <option value=''>Sort by price</option>
-          <option value=''>Sort by latest</option>
-          <option value=''>Sort by oldest</option>
-          <option value=''>Sort by rating</option>
-          <option value=''>Sort by sale</option>
+        <select name='' id='' className='redSelect' onChange={sortHandler}>
+          <option value='priceDown'>Sort by price: High to Low</option>
+          <option value='priceUp'>Sort by price: Low to High</option>
+          <option value='latest'>Sort by latest</option>
+          <option value='oldest'>Sort by oldest</option>
+          <option value='rating'>Sort by rating</option>
         </select>
       </div>
     </div>
@@ -59,32 +63,30 @@ const ProductsScreen = ({ match }) => {
       style={loading ? { visibility: 'hidden' } : { visibility: 'inherit' }}
     >
       <div className='page-btn'>
-        {pageNumber > 1 && (
-          <Link
-            to={`/products/page/${Number(pageNumber) - 1}`}
+        {currentPage > 1 && (
+          <span
+            onClick={() => changePage(Number(currentPage) - 1)}
             className='redRotate redSpan'
           >
             &#8594;
-          </Link>
+          </span>
         )}
         {[...Array(pages).keys()].map((x) => (
-          <Link
+          <span
+            onClick={() => changePage(x + 1)}
             key={x + 1}
-            to={`/products/page/${x + 1}`}
-            className={`redSpan ${
-              Number(pageNumber) === x + 1 ? 'redActive' : ''
-            }`}
+            className={`redSpan ${currentPage === x + 1 ? 'redActive' : ''}`}
           >
             {x + 1}
-          </Link>
+          </span>
         ))}
-        {pageNumber < pages && (
-          <Link
-            to={`/products/page/${Number(pageNumber) + 1}`}
+        {currentPage < pages && (
+          <span
+            onClick={() => changePage(Number(currentPage) + 1)}
             className='redSpan'
           >
             &#8594;
-          </Link>
+          </span>
         )}
       </div>
     </div>

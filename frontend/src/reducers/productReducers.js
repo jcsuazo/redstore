@@ -31,17 +31,22 @@ import {
   PRODUCT_LATEST_FAIL,
 } from '../constants/productConstants';
 
-export const productListReducer = (state = { products: [] }, action) => {
+export const productListReducer = (
+  state = { products: [], currentPage: 1, sort: 'priceDown' },
+  action,
+) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return { loading: true, products: [] };
     case PRODUCT_LIST_SUCCESS:
-      const { products, pages, page } = action.payload;
+      const { products, pages, page, currentPage, sort } = action.payload;
       return {
         loading: false,
         products,
         pages,
         page,
+        currentPage,
+        sort,
       };
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
