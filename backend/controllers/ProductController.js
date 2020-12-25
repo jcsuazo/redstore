@@ -202,6 +202,20 @@ const getLatestProducts = asyncHandler(async (req, res) => {
 
   res.json(products);
 });
+// @desc    Get top 4 related products
+// @route   GET /api/products/:id/related
+// @access  Public
+const getRelatedProducts = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  const products = await Product.find({
+    category: product.category,
+    _id: { $ne: product._id },
+  })
+    .sort({ createdAt: -1 })
+
+    .limit(4);
+  res.json(products);
+});
 
 export {
   getProducts,
@@ -213,4 +227,5 @@ export {
   getTopProducts,
   getFeaturedProducts,
   getLatestProducts,
+  getRelatedProducts,
 };

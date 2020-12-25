@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { listProducts, listProductsDetails } from '../actions/productActions';
+import {
+  listProductsDetails,
+  relatedProducts,
+} from '../actions/productActions';
 import Meta from '../components/Meta';
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 
 const Product2Screen = ({ match, history }) => {
   const [qty, setQty] = useState(1);
-  const [rating, setRating] = useState('');
   //HELPERS
   let id = match.params.id;
   //STATE
@@ -18,23 +20,18 @@ const Product2Screen = ({ match, history }) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
-  const productList = useSelector((state) => state.productList);
-  const {
-    loading: loadingList,
-    products,
-    pages,
-    currentPage,
-    sort,
-  } = productList;
+  const productRelated = useSelector((state) => state.productRelated);
+  const { loading: loadingList, products } = productRelated;
 
   function truncate(str) {
     return str.length > 40 ? str.substring(0, 40) + '...' : str;
   }
 
   useEffect(() => {
-    dispatch(listProducts());
     dispatch(listProductsDetails(id));
+    dispatch(relatedProducts(id));
   }, [dispatch, id]);
+
   //ADD CARD HANDLER
   const addToCartHandler = () => {
     history.push(`/cart/${id}?qty=${qty}`);
@@ -82,8 +79,12 @@ const Product2Screen = ({ match, history }) => {
               <option>Small</option>
             </select>
           )}
-          <input type='number' placeholder='1' />
-          <a href='/' className='red-btn'>
+          <input
+            type='number'
+            placeholder='1'
+            onChange={(e) => setQty(e.target.value || 1)}
+          />
+          <a href='/' className='red-btn' onClick={addToCartHandler}>
             Add To Cart
           </a>
           <h3>
@@ -95,11 +96,13 @@ const Product2Screen = ({ match, history }) => {
       </div>
     </div>
   );
-  const relatedProducts = (
+  const relatedProductsHeading = (
     <div className='small-container'>
       <div className='redRow redRow2'>
         <h2>Related Products</h2>
-        <p>View More</p>
+        <p>
+          <Link to='/'>View More</Link>
+        </p>
       </div>
     </div>
   );
@@ -124,9 +127,9 @@ const Product2Screen = ({ match, history }) => {
     <>
       <Meta title='All Products - RedStore' />
       <Header />
-      {singleProductDetails}
-      {relatedProducts}
-      {loading ? <Loader /> : featuredProducts}
+      {loading ? <Loader /> : singleProductDetails}
+      {relatedProductsHeading}
+      {loadingList ? <Loader /> : featuredProducts}
     </>
   );
 };

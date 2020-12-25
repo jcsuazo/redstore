@@ -27,6 +27,10 @@ import {
   PRODUCT_LATEST_REQUEST,
   PRODUCT_LATEST_SUCCESS,
   PRODUCT_LATEST_FAIL,
+  PRODUCT_RELATED_REQUEST,
+  PRODUCT_RELATED_SUCCESS,
+  PRODUCT_RELATED_FAIL,
+  s,
 } from '../constants/productConstants';
 
 export const listProducts = (
@@ -247,6 +251,24 @@ export const listLatestProducts = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_LATEST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const relatedProducts = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_RELATED_REQUEST });
+
+    const { data } = await axios.get(`/api/products/${id}/related`);
+
+    dispatch({ type: PRODUCT_RELATED_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_RELATED_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
