@@ -381,6 +381,7 @@ const HomeScreen = ({ match }) => {
   );
   return (
     <>
+      <Meta />
       <div className='bg-gradiant'>
         <Header />
         {heroHtml}
