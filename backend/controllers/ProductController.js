@@ -149,7 +149,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get top rated products
-// @route   POST /api/products/top
+// @route   GET /api/products/top
 // @access  Public
 const getTopProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({}).sort({ rating: -1 }).limit(3);
@@ -157,13 +157,24 @@ const getTopProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
-// @desc    Get lastest 4 feature products
-// @route   POST /api/products/featured
+// @desc    Get latest 4 feature products
+// @route   GET /api/products/featured
 // @access  Public
 const getFeaturedProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({ featured: true })
     .sort({ rating: -1 })
     .limit(4);
+
+  res.json(products);
+});
+
+// @desc    Get latest products
+// @route   GET /api/products/latest
+// @access  Public
+const getLatestProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({ featured: false })
+    .sort({ rating: -1 })
+    .limit(8);
 
   res.json(products);
 });
@@ -177,4 +188,5 @@ export {
   createProductReview,
   getTopProducts,
   getFeaturedProducts,
+  getLatestProducts,
 };

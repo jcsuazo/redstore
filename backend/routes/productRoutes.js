@@ -9,6 +9,7 @@ import {
   createProductReview,
   getTopProducts,
   getFeaturedProducts,
+  getLatestProducts,
 } from '../controllers/productController.js';
 const router = express.Router();
 
@@ -22,10 +23,15 @@ router.route('/').get(getProducts).post(protect, admin, createProduct);
 // @access  Public
 router.route('/top').get(getTopProducts);
 
-// @desc    Get lastest 4 feature products
+// @desc    Get latest 4 feature products
 // @route   POST /api/products/featured
 // @access  Public
 router.route('/featured').get(getFeaturedProducts);
+
+// @desc    Get latest products
+// @route   GET /api/products/latest
+// @access  Public
+router.route('/latest').get(getLatestProducts);
 
 // @desc    Fetch single product | Delete a product | Upate a product
 // @route   GET /api/products/:id | DELETE /api/products/:id | PUT /api/products/:id
