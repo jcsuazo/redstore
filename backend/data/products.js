@@ -57,7 +57,7 @@ const products = [
     description:
       'Midsole Cushioning: These New Balance sneakers feature a REVlite midsole that delivers incredibly lightweight cushioning and provides a responsive ride for comfortable all-day wear',
     brand: 'Nergize',
-    category: 'Clothing',
+    category: 'shoes',
     price: 39.98,
     countInStock: 10,
     rating: 5,
@@ -81,7 +81,7 @@ const products = [
     description:
       "Run Dry Moisture Management Provides Superior Moisture Transport with our Ultra Wicking Fibers. So, Whether you're in the Gym or on the Road, your Feet Stay Fresh.",
     brand: 'hrx',
-    category: 'Clothing',
+    category: 'shoes',
     price: 29.99,
     countInStock: 0,
     rating: 1,

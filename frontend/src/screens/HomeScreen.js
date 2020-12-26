@@ -44,9 +44,9 @@ const HomeScreen = ({ match }) => {
             <br />
             Hard work gains success. Greatness will come.
           </p>
-          <a href='/' className='red-btn'>
+          <Link to='/products' className='red-btn'>
             Explore Now &#8594;
-          </a>
+          </Link>
         </div>
         <div className='red-col-2'>
           <img src='/images/image1.png' alt='image1' />

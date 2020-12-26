@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
+import Product2Screen from './screens/Product2Screen';
 import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
@@ -17,7 +17,6 @@ import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import ProductsScreen from './screens/ProductsScreen';
-import Product2Screen from './screens/Product2Screen';
 const App = () => {
   return (
     <Router>
@@ -30,9 +29,6 @@ const App = () => {
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />
-          {/* <Route path='/product/:id' component={ProductScreen} /> */}
-          <Route path='/product/:id' component={Product2Screen} />
-          <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/admin/userlist' component={UserListScreen} />
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
           <Route
@@ -48,6 +44,8 @@ const App = () => {
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/orderlist' component={OrderListScreen} />
         </Container>
+        <Route path='/product/:id' component={Product2Screen} />
+        <Route path='/cart/:id?' component={CartScreen} />
         <Route path='/products' component={ProductsScreen} exact />
         <Route path='/search/:keyword' component={HomeScreen} exact />
         <Route path='/page/:pageNumber' component={HomeScreen} exact />

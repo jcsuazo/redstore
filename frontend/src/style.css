@@ -3,10 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+.bg-my-red {
+  background: #ff523b;
+}
+.text-my-red {
+  color: #ff523b;
+}
+.bg-my-red-ligth {
+  background: #563434;
+}
 body {
   font-family: 'Poppins', sans-serif;
 }
-
+.redEnd {
+  text-align: end;
+}
 .redNavbar {
   display: flex;
   align-items: center;
@@ -70,6 +81,7 @@ p {
   border-radius: 30px;
   text-decoration: none;
   transition: background 0.5s;
+  border: none;
 }
 .red-btn:hover {
   background: #563434;
@@ -223,6 +235,61 @@ small {
   filter: grayscale(0);
 }
 
+/* -------------------Cart items------------------- */
+.cart-page {
+  margin: 80px auto 0 auto;
+}
+.cart-page2 {
+  margin-bottom: 80px;
+}
+.cart-page table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cart-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cart-page th {
+  text-align: left;
+  padding: 5px;
+  color: #fff;
+  background: #ff523b;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+.cart-page td {
+  padding: 10px 5px;
+}
+.cart-page td input {
+  width: 40px;
+  height: 30px;
+  padding: 5px;
+}
+.cart-page a {
+  color: #ff523b;
+  font-size: 12px;
+}
+.cart-page td img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+.total-price {
+  display: flex;
+  justify-content: flex-end;
+}
+.total-price table {
+  border-top: 3px solid #ff523b;
+  width: 100%;
+  max-width: 350px;
+}
+.total-price td:last-child {
+  text-align: right;
+}
+.total-price th:last-child {
+  text-align: right;
+}
 /* -------------------Footer------------------- */
 
 .footer {
@@ -424,6 +491,9 @@ ul {
   .red-col-3,
   .red-col-4 {
     flex-basis: 100%;
+  }
+  .cart-info p {
+    display: none;
   }
 }
 /* @media only screen and (max-width: 767px) {

@@ -79,14 +79,40 @@ const Product2Screen = ({ match, history }) => {
               <option>Small</option>
             </select>
           )}
-          <input
+          {/* <input
             type='number'
             placeholder='1'
             onChange={(e) => setQty(e.target.value || 1)}
-          />
-          <a href='/' className='red-btn' onClick={addToCartHandler}>
-            Add To Cart
-          </a>
+          /> */}
+          {product.countInStock > 0 && (
+            <select
+              name=''
+              id=''
+              value={product.qty}
+              onChange={(e) => setQty(e.target.value || 1)}
+            >
+              {[...Array(product.countInStock).keys()].map((x) => (
+                <option key={x + 1}>{x + 1}</option>
+              ))}
+            </select>
+          )}
+          <button
+            className='red-btn'
+            onClick={addToCartHandler}
+            style={
+              product.countInStock === 0
+                ? { color: '#fff', backgroundColor: 'gray' }
+                : {}
+            }
+            disabled={product.countInStock === 0}
+          >
+            {product.countInStock === 0 ? (
+              <span>Out Of Stock</span>
+            ) : (
+              <span>Add To Cart</span>
+            )}
+          </button>
+
           <h3>
             Product Details <i className='fa fa-indent'></i>
           </h3>
