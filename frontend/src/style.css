@@ -6,6 +6,13 @@
 .bg-my-red {
   background: #ff523b;
 }
+.bg-my-red span {
+  background: #ff523b !important;
+  border-color: #ff523b !important;
+}
+.mb-10 {
+  margin-bottom: 85px !important;
+}
 .text-my-red {
   color: #ff523b;
 }

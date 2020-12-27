@@ -196,12 +196,13 @@ const getFeaturedProducts = asyncHandler(async (req, res) => {
 // @route   GET /api/products/latest
 // @access  Public
 const getLatestProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({ featured: false })
+  const products = await Product.find({ featured: false, homeFeatured: false })
     .sort({ rating: -1 })
     .limit(8);
 
   res.json(products);
 });
+
 // @desc    Get top 4 related products
 // @route   GET /api/products/:id/related
 // @access  Public
@@ -217,6 +218,17 @@ const getRelatedProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
+// @desc    Get the Home Featured Product
+// @route   GET /api/products/home/featured
+// @access  Public
+const getHomeFeaturedProducts = asyncHandler(async (req, res) => {
+  let product = await Product.findOne({ homeFeatured: true });
+  if (!product) {
+    product = await Product.findOne({});
+  }
+  res.json(product);
+});
+
 export {
   getProducts,
   getProductById,
@@ -228,4 +240,5 @@ export {
   getFeaturedProducts,
   getLatestProducts,
   getRelatedProducts,
+  getHomeFeaturedProducts,
 };

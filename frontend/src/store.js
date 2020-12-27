@@ -12,6 +12,7 @@ import {
   productFeaturedReducer,
   productLatestReducer,
   productRelatedReducer,
+  productHomeFeaturedReducer,
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
@@ -41,6 +42,7 @@ const reducer = combineReducers({
   productCreateReview: productCreateReviewReducer,
   productTopRated: productTopRatedReducer,
   productFeatured: productFeaturedReducer,
+  productHomeFeatured: productHomeFeaturedReducer,
   productLatest: productLatestReducer,
   productRelated: productRelatedReducer,
   cart: cartReducer,

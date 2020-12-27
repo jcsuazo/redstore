@@ -81,7 +81,7 @@ const RegisterScreen = ({ location, history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Button type='submit' variant='primary'>
+        <Button type='submit' className='red-btn m-0'>
           Register
         </Button>
       </Form>

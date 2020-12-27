@@ -99,15 +99,14 @@ const Header = () => {
                 <li>
                   <Link to='/products'>Products</Link>
                 </li>
-                <li>
+                {/* <li>
                   <a href='/'>About</a>
                 </li>
                 <li>
                   <a href='/'>Contact</a>
-                </li>
-                <li>
-                  <a href='/'>Account</a>
-                </li>
+                </li> */}
+                <li>{userInfo ? loggedHTMl : guestHTML}</li>
+                <li>{userInfo && userInfo.isAdmin && adminMenuHTMl}</li>
               </ul>
             </nav>
             <Link to='/cart'>

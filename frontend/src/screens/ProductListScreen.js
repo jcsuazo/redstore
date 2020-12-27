@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
+import Header from '../components/Header';
 import {
   listProducts,
   deleteProduct,
@@ -68,12 +69,13 @@ const ProductListScreen = ({ history, match }) => {
   };
   return (
     <>
-      <Row className='align-items-center'>
+      <Header />
+      <Row className='align-items-center mt-5'>
         <Col>
           <h1>Products</h1>
         </Col>
         <Col className='text-right'>
-          <Button className='my-3' onClick={createProductHandler}>
+          <Button className='my-3 red-btn' onClick={createProductHandler}>
             <i className='fas fa-plus'></i> Create Product
           </Button>
         </Col>

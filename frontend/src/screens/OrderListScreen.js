@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listOrders } from '../actions/orderActions';
+import Header from '../components/Header';
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,8 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, userInfo, history]);
   return (
     <>
-      <h1>Orders</h1>
+      <Header />
+      <h1 className='mt-5'>Orders</h1>
       {loading ? (
         <Loader />
       ) : error ? (

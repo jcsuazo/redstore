@@ -30,7 +30,9 @@ import {
   PRODUCT_RELATED_REQUEST,
   PRODUCT_RELATED_SUCCESS,
   PRODUCT_RELATED_FAIL,
-  s,
+  PRODUCT_HOME_FEATURED_REQUEST,
+  PRODUCT_HOME_FEATURED_SUCCESS,
+  PRODUCT_HOME_FEATURED_FAIL,
 } from '../constants/productConstants';
 
 export const listProducts = (
@@ -40,7 +42,6 @@ export const listProducts = (
 ) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    // console.log('callling');
     const { data } = await axios.get(
       `/api/products?keyword=${keyword}&pageNumber=${pageNumber}&sort=${sort}`,
     );
@@ -269,6 +270,23 @@ export const relatedProducts = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_RELATED_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const homeFeaturedProduct = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_HOME_FEATURED_REQUEST });
+
+    const { data } = await axios.get(`/api/products/home/featured`);
+    dispatch({ type: PRODUCT_HOME_FEATURED_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_HOME_FEATURED_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

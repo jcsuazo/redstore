@@ -11,7 +11,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   ];
   const stepsHTML = allSteps.map((step, i) => {
     return (
-      <Nav.Item key={i} className='ml-0'>
+      <Nav.Item key={i} className='ml-0 mt-5'>
         {step.currentStep ? (
           <LinkContainer to={step.route} className='ml-0'>
             <Nav.Link>{step.name}</Nav.Link>

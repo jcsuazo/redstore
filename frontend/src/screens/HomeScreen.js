@@ -7,6 +7,7 @@ import {
   listProducts,
   listFeaturedProducts,
   listLatestProducts,
+  homeFeaturedProduct,
 } from '../actions/productActions';
 import Meta from '../components/Meta';
 import Rating from '../components/Rating';
@@ -15,16 +16,21 @@ const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
   const dispatch = useDispatch();
+
   const productFeatured = useSelector((state) => state.productFeatured);
   const { products: productsFeatured } = productFeatured;
 
   const productLatest = useSelector((state) => state.productLatest);
   const { products: productsLatest } = productLatest;
 
+  const productHomeFeatured = useSelector((state) => state.productHomeFeatured);
+  const { product } = productHomeFeatured;
+
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
     dispatch(listFeaturedProducts());
     dispatch(listLatestProducts());
+    dispatch(homeFeaturedProduct());
   }, [dispatch, keyword, pageNumber]);
 
   function truncate(str) {
@@ -113,30 +119,22 @@ const HomeScreen = ({ match }) => {
       </div>
     </div>
   );
-  const offers = (
+  const offers = product && (
     <div className='offer'>
       <div className='small-container'>
         <div className='redRow'>
           <div className='red-col-2'>
-            <img
-              className='offer-img'
-              src='/images/exclusive.png'
-              alt='offer-img'
-            />
+            <img className='offer-img' src={product.image} alt={product.name} />
           </div>
           <div className='red-col-2'>
             <p>Exclisively Available on RedStore</p>
-            <h1>Smart Band 4</h1>
+            <h1>{product.name}</h1>
             <div>
-              <small>
-                The Mi Smart Band 4 features a 39.9% larger (then Mi Band 3)
-                AMOLED color full-touch display with adjustable brightness, so
-                everything is clear as can be.
-              </small>
+              <small>{product.description}</small>
             </div>
-            <a href='/' className='red-btn'>
+            <Link to={`/product/${product._id}`} className='red-btn'>
               Buy Now &#8594;
-            </a>
+            </Link>
           </div>
         </div>
       </div>

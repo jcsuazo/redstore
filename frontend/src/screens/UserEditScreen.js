@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { getUserDetails, updateUser } from '../actions/userActions';
 import { USER_UPDATE_RESET } from '../constants/userConstants';
+import Header from '../components/Header';
 
 const UserEditScreen = ({ match, history }) => {
   //User id on the url
@@ -58,6 +59,7 @@ const UserEditScreen = ({ match, history }) => {
   };
   return (
     <>
+      <Header />
       <Link to='/admin/userlist' className='btn btn-light my-3'>
         Go Back
       </Link>
@@ -98,7 +100,7 @@ const UserEditScreen = ({ match, history }) => {
               ></Form.Check>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
+            <Button type='submit' className='red-btn m-0'>
               Update
             </Button>
           </Form>

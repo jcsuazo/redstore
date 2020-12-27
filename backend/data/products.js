@@ -1,5 +1,19 @@
 const products = [
   {
+    name: 'Smart Band 4',
+    image: '/images/exclusive.png',
+    description:
+      'The Mi Smart Band 4 features a 39.9% larger (then Mi Band 3) AMOLED color full-touch display with adjustable brightness, so everything is clear as can be.',
+    brand: "Hanes Men's",
+    category: 'watches',
+    price: 125.99,
+    countInStock: 3,
+    rating: 4.5,
+    numReviews: 4,
+    featured: false,
+    homeFeatured: true,
+  },
+  {
     name: "Hanes Men's Short Sleeve Beefy-t",
     image: '/images/product-1.jpg',
     description:

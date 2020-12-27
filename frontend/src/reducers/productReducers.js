@@ -32,6 +32,9 @@ import {
   PRODUCT_RELATED_REQUEST,
   PRODUCT_RELATED_SUCCESS,
   PRODUCT_RELATED_FAIL,
+  PRODUCT_HOME_FEATURED_REQUEST,
+  PRODUCT_HOME_FEATURED_SUCCESS,
+  PRODUCT_HOME_FEATURED_FAIL,
 } from '../constants/productConstants';
 
 export const productListReducer = (
@@ -178,6 +181,22 @@ export const productRelatedReducer = (state = { products: [] }, action) => {
     case PRODUCT_RELATED_SUCCESS:
       return { loading: false, products: action.payload };
     case PRODUCT_RELATED_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const productHomeFeaturedReducer = (
+  state = { products: [] },
+  action,
+) => {
+  switch (action.type) {
+    case PRODUCT_HOME_FEATURED_REQUEST:
+      return { loading: true, product: {} };
+    case PRODUCT_HOME_FEATURED_SUCCESS:
+      return { loading: false, product: action.payload };
+    case PRODUCT_HOME_FEATURED_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

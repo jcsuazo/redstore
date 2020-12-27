@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { listProductsDetails, updateProduct } from '../actions/productActions';
 import { PRODUCT_UPDATE_RESEST } from '../constants/productConstants';
+import Header from '../components/Header';
 
 const ProductEditScreen = ({ match, history }) => {
   //User id on the url
@@ -94,10 +95,11 @@ const ProductEditScreen = ({ match, history }) => {
   };
   return (
     <>
+      <Header />
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
-      <FormContainer>
+      <FormContainer className='mb-5'>
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
@@ -184,7 +186,7 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
+            <Button type='submit' className='red-btn m-0 mb-10'>
               Update
             </Button>
           </Form>

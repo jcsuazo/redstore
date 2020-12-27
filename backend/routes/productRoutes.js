@@ -11,6 +11,7 @@ import {
   getFeaturedProducts,
   getLatestProducts,
   getRelatedProducts,
+  getHomeFeaturedProducts,
 } from '../controllers/productController.js';
 const router = express.Router();
 
@@ -28,6 +29,11 @@ router.route('/top').get(getTopProducts);
 // @route   POST /api/products/featured
 // @access  Public
 router.route('/featured').get(getFeaturedProducts);
+
+// @desc    Get the Home Featured Product
+// @route   GET /api/products/home/featured
+// @access  Public
+router.route('/home/featured').get(getHomeFeaturedProducts);
 
 // @desc    Get latest products
 // @route   GET /api/products/latest

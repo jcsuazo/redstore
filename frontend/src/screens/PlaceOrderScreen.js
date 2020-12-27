@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder, resetSuccess } from '../actions/orderActions';
 import { resetCard } from '../actions/cartActions';
+import Header from '../components/Header';
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const PlaceOrderScreen = ({ history }) => {
   };
   return (
     <>
+      <Header />
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
@@ -142,7 +144,7 @@ const PlaceOrderScreen = ({ history }) => {
               <ListGroup.Item>
                 <Button
                   type='button'
-                  className='btn-block'
+                  className='red-btn m-0 btn-block'
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
